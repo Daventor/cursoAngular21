@@ -1,0 +1,79 @@
+<p>class-defer works!</p>
+
+@defer{
+    <app-class-comp></app-class-comp>
+}@loading (after 100ms; minimum 1s) {
+    <p>loading ...</p>
+}@error {
+    <p>Error cargando componente</p>
+}
+
+<div style="border: 1px solid #ff0000; height: 700px;"></div>
+
+<!-- @defer(on viewport){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>Placeholder con viewport</p>
+} -->
+
+@defer(on viewport(showComponent)){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>placeholder con disparador</p>
+}
+
+<div style="border: 1px solid red; height: 300px;"></div>
+
+<div #showComponent>Ahora carga</div>
+
+
+@defer(on viewport({ trigger: showComponent2, rootMargin: '100px', threshold: 0.5})){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>placeholder con disparador</p>
+}
+
+<div style="border: 1px solid red; height: 300px;"></div>
+
+<div #showComponent2>Ahora carga</div>
+
+@defer(on interaction){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>Click aquí para cargar componente</p>
+}
+
+
+@defer(on interaction(interactionBtn)){
+    <app-class-comp></app-class-comp>
+}
+<button #interactionBtn>Cargar</button>
+
+@defer (on hover) {
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>Se carga cuanfo paso el ratón</p>
+}
+
+@defer(on immediate){
+    <app-class-comp></app-class-comp>
+}
+
+@defer(on timer(5s)){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>Me cargo a los 5 segundos</p>
+}
+
+@defer(when enableComponent){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>Me cargo al hacer click en el botón</p>
+    <button (click)="toggleEnableComponent()">Cargar por condición</button>
+}
+
+@defer(on interaction; prefetch on idle){
+    <app-class-comp></app-class-comp>
+}@placeholder {
+    <p>Este componente está precargado y cuando haga click, su carga será inmediata</p>
+}

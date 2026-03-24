@@ -1,0 +1,15 @@
+<p>class-templating works!</p>
+
+<p title="Eso es un title {{ dynamicText }}" >{{ dynamicText }}</p>
+
+<p [class.valid]="isValidForm()"> Aplica class valid </p>
+
+<p [class]="listClasses">String de clases</p>
+<p [class]="arrayClasses">Array de clases</p>
+<p [class]="objectClasses()">Objecto de clases</p>
+
+
+<section [style.display]="isValidForm() ? 'block':'none'" [style.padding.px]="50">Es un formulario válido</section>
+
+<p [style]="listStyles">String de listas</p>
+<p [style]="objectStyles">Objecto de estilos</p>

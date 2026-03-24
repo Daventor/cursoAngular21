@@ -1,0 +1,12 @@
+<p>class-referencing works!</p>
+
+
+<input #search />
+
+<ul>
+    @for (i of items; track $index){
+        <li #item>{{ i }}</li>
+    }
+</ul>
+
+<div><ng-content/></div>

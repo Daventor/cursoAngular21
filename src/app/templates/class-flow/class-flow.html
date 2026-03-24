@@ -1,0 +1,54 @@
+<p>class-flow works!</p>
+
+<p>
+    @if(name == 'David'; as itsMyName){
+        <strong>Bienvenido {{ name }}</strong>
+    }@else if(name == 'Pedro'){
+        <h1>El gran {{name}}</h1>
+    }@else{
+        <h3>No se quien eres, {{ name }}, pero hola ^_^</h3>
+    }
+</p>
+
+@if(name.toUpperCase(); as nameUpper){
+    <p> En mayúsculas: {{ nameUpper }} </p>
+}
+
+<ul>
+    @for(product of listProducts; track product.id){
+        <li>[{{product.id}}] {{ product.name }}</li>
+    }
+
+    
+</ul>
+
+<ul>
+    <!-- $count, $index, $first, $last, $even, $odd -->
+    @for(product of listProducts; track product.id; let idx=$index){
+        <li>{{ idx }} ({{$index + 1 }}/{{ $count }}) - {{ $first?'Primero':'' }} - {{ $last?'Último':''}} - {{ $even?'impar':'par' }}</li>
+    }
+</ul>
+
+<ul>
+    @for(item of emptyList; track $index){
+        <li>{{item}}</li>
+    }@empty{
+        <li>No hay elementos en la lista</li>
+    }
+</ul>
+
+<p>
+    @switch (role) {
+        @case ('admin'){
+            <strong>Hola Administrador</strong>
+        }
+        @case ('officeAdmin')
+        @case ('user'){
+            Bienvenido a tu panel
+        }
+        @default {
+            Hola, puedes ver pero no modificar
+        }
+    }
+</p>
+

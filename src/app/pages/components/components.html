@@ -17,8 +17,26 @@
 <app-class-outputs (buttonClicked)="btnClickHandler()" (primitiveSend)="btnPrimitiveHandler($event)"
 (objectSend)="btnObjectHandler($event)"></app-class-outputs> -->
 
-<app-class-projection>
+<!-- <app-class-projection>
     <app-class-projection-title>My Custom Title</app-class-projection-title>
     <app-class-projection-body></app-class-projection-body>
     test
 </app-class-projection>
+
+<div class="app-class-host"></div>
+<input class="app-class-host"> -->
+
+@if(showLifeCycleComponent()){
+    <app-class-lifecycle [userId]="myUserId()"></app-class-lifecycle>
+    <button (click)="toggleShowLifeCycleComponent()">Hide component</button>
+    <button (click)="changeUserId()">Change UserID</button>
+}@else{
+    <button (click)="toggleShowLifeCycleComponent()">Show component</button>
+}
+
+<app-class-referencing>
+    <h1 #title>Contenido proyectado</h1>
+    <p>Más contenido proyectado desde el padre</p>
+</app-class-referencing>
+
+<div class="app-class-host" #myComp></div>

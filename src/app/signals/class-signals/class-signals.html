@@ -1,0 +1,22 @@
+<p>class-signals works!</p>
+
+<p>Contador: {{ count() }} <button (click)="increment()">Incrementa contador</button></p>
+
+<p>[Effect] Precio: {{ price() }} <button (click)="changePrice()">Change price</button> 
+    <button (click)="initializeLogging()">Inicializar login</button>
+</p>
+
+<p>
+    <button (click)="untrackedExample()">Empezar el ejemplo de untracked</button>
+</p>
+
+<p>
+    <button (click)="checkSignals()">Comprobar las señales</button>
+</p>
+
+<p>
+    Source: {{ source()}} | Local: {{ local() }}
+
+    <button (click)="changeLocal()">Change Local</button>
+    <button (click)="changeSource()">Change Source</button>
+</p> 

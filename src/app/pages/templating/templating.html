@@ -1,0 +1,24 @@
+<p>templating works!</p>
+
+<!-- <app-class-templating></app-class-templating> -->
+
+<!-- <app-class-events></app-class-events>
+
+<app-class-flow></app-class-flow> -->
+
+<!-- <app-class-defer></app-class-defer> -->
+
+<p>{{ "Yo soy David" | uppercase }}</p>
+
+<p>Fecha: {{ "03/26/2026" | date: 'fullDate' | uppercase}}</p>
+
+{{ "Yo soy" + " David" | uppercase }}
+
+<br>
+{{ (true ? 'Access granted' : 'Access Denied') | uppercase}}
+
+<p>
+    {{ "Esto es una prueba de custompipe" }}
+     <br>
+    {{ "Esto es una prueba de custompipe" | kebabCase: 'uppercase'}}
+</p>
