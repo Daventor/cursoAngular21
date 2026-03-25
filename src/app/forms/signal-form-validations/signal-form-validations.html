@@ -1,0 +1,246 @@
+<p>signal-form-validations works!</p>
+
+<form (submit)="onSubmit($event)">
+    <div>
+        <label>Email:</label>
+        <input type="email" [formField]="thingForm.email">
+
+        @if(thingForm.email().touched() && thingForm.email().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.email().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Nombre:</label>
+        <div style="display: inline;">
+            Comprobar nombre: <input type="checkbox" [formField]="thingForm.checkName">
+        </div>
+        <input type="text" [formField]="thingForm.name">
+
+        @if(thingForm.name().touched() && thingForm.name().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.name().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Edad (18 - 120):</label>
+        <input type="number" [formField]="thingForm.age">
+
+        @if(thingForm.age().touched() && thingForm.age().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.age().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Mínimo clientes:</label>
+        <input type="number" [formField]="thingForm.minClientsQty">
+    </div>
+
+    <div>
+        <label>Clientes (Min: {{ thingModel().minClientsQty }}):</label>
+        <input type="number" [formField]="thingForm.clientsQty">
+
+        @if(thingForm.clientsQty().touched() && thingForm.clientsQty().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.clientsQty().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Password:</label>
+        <input type="password" [formField]="thingForm.password">
+
+        @if(thingForm.password().touched() && thingForm.password().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.password().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Confirmar Password:</label>
+        <input type="password" [formField]="thingForm.confirmPassword">
+
+        @if(thingForm.confirmPassword().touched() && thingForm.confirmPassword().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.confirmPassword().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Comentarios:</label>
+        <textarea rows="5" [formField]="thingForm.remarks"></textarea>
+
+        @if(thingForm.remarks().touched() && thingForm.remarks().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.remarks().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Teléfono:</label>
+        <input [formField]="thingForm.phone">
+
+        @if(thingForm.phone().touched() && thingForm.phone().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.phone().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Código postal:</label>
+        <input [formField]="thingForm.zip"
+         [class.is-invalid]="thingForm.zip().touched() && thingForm.zip().invalid()"
+        [class.is-valid]="thingForm.zip().touched() && thingForm.zip().valid()"
+        >
+
+        @if(thingForm.zip().touched() && thingForm.zip().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.zip().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+
+        @if(thingForm.zip().disabled()){
+            @for(reason of thingForm.zip().disabledReasons(); track reason){
+                <p>{{reason.message}}</p>
+            }
+        }
+    </div>
+
+    <fieldset>
+        <legend>Productos</legend>
+
+        @for(product of thingModel().products; track $index; let i=$index){
+            <div>
+                <input type="text" [formField]="thingForm.products[i].name">
+                <textarea rows="5" [formField]="thingForm.products[i].description"></textarea>
+                @if(thingForm.products[i].description().touched() && thingForm.products[i].description().invalid()){
+                    <ul class="error-list">
+                        @for(error of thingForm.products[i].description().errors(); track error.kind){
+                            <li>{{ error.message }}</li>
+                        }
+                    </ul>
+                }
+
+                <button type="button" (click)="removeProduct(i)">Eliminar</button>
+            </div>
+        }
+
+        <button type="button" (click)="addProduct()">+ Añadir producto</button>
+    </fieldset>
+    @if(thingForm.products().touched() && thingForm.products().invalid()){
+        <ul class="error-list">
+            @for(error of thingForm.products().errors(); track error.kind){
+                <li>{{ error.message }}</li>
+            }
+        </ul>
+    }
+
+    <div>
+        <label>Website:</label>
+        <input type="text" [formField]="thingForm.website">
+
+        @if(thingForm.website().touched() && thingForm.website().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.website().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+        <label>Nombre de usuario:</label>
+        <input type="text" [formField]="thingForm.username">
+
+        @if(thingForm.username().touched() && thingForm.username().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.username().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+        @if(thingForm.username().pending()){
+            <span class="checking">Comprobando disponibilidad ...</span>
+        }
+    </div>
+
+    @if(!thingForm.anotherUrl().hidden()){
+    <div>
+        <label>Otra web:</label>
+        <input type="text" placeholder="https://" [formField]="thingForm.anotherUrl">
+
+        @if(thingForm.anotherUrl().touched() && thingForm.anotherUrl().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.anotherUrl().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+    }
+
+
+
+    <button type="submit" [disabled]="thingForm().submitting()">Enviar</button>
+    <button type="submit" [disabled]="!thingForm().valid()">Otro enviar</button>
+
+    @if(thingForm().dirty()){
+        <p class="warning">Tienes campos sin guardar</p>
+    }
+
+    <label>Edad ({{ thingForm.age().min?.() }} - {{ thingForm.age().max?.() }}) </label>
+
+    <p>
+        {{thingForm.age().metadata(PLACEHOLDER)?.() }}
+    </p>
+
+    <ul>
+        @for(hint of thingForm.age().metadata(HINTS)?.(); track $index){
+            <li>{{ hint }}</li>
+        }
+    </ul>
+
+    <div>
+        <label>Retraso: </label>
+        <div style="display: inline;">
+            Hay retraso <input type="checkbox" [formField]="thingForm.checkDelay">
+        </div>
+        <app-delay-stepper [formField]="thingForm.delay"></app-delay-stepper>
+         @if(thingForm.delay().touched() && thingForm.delay().invalid()){
+            <ul class="error-list">
+                @for(error of thingForm.delay().errors(); track error.kind){
+                    <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+</form>

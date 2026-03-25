@@ -1,0 +1,9 @@
+@if(disabled()){
+    <div class="delay">Sin retraso</div>
+}@else{
+    <div class="delay">{{ value() }}</div>
+    <div>
+        <a href="#" (click)="inc($event)">+15 Minutos</a>
+        <a href="#" (click)="dec($event)">-15 Minutos</a>
+    </div>
+}

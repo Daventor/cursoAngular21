@@ -1,0 +1,7 @@
+<p>http works!</p>
+
+<ul>
+    @for(post of postService.posts(); track post.id){
+        <li>{{ post.title }}</li>
+    }
+</ul>

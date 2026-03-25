@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { SignalForm } from '../../forms/signal-form/signal-form';
+import { SignalFormValidations } from "../../forms/signal-form-validations/signal-form-validations";
 
 
 @Component({
   selector: 'app-form',
-  imports: [SignalForm],
+  imports: [SignalFormValidations],
   templateUrl: './form.html',
   styleUrl: './form.css',
 })
