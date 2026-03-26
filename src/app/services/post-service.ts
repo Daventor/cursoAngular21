@@ -1,7 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { APP_SETTINGS } from '../config/app-settings';
-import { HttpClient, HttpEventType, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpEventType, HttpHeaders, HttpParams, httpResource, HttpResourceRef } from '@angular/common/http';
 import { Post } from '../models/post-model';
+import { Observable } from 'rxjs';
+import { CACHING_ENABLED } from '../core/interceptors/caching-interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -89,4 +91,43 @@ export class PostService {
       }
     });
   }
+
+  trackPageExit(data: unknown){
+    this.http.post('/api/analytics', data, { keepalive: true }).subscribe();
+  }
+
+  getAllObservable(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.appConfig.apiUrl}/posts`);
+  }
+
+  getAllResource(): HttpResourceRef<Post[] | undefined> {
+    return httpResource<Post[]>(() => `${this.appConfig.apiUrl}/posts`);
+  }
+
+  getAllInterceptorCache(){
+    return this.http.get<Post[]>(`${this.appConfig.apiUrl}/posts`, {
+      context: new HttpContext().set(CACHING_ENABLED, true)
+    }).subscribe((posts: Post[]) => {
+      console.log(posts);
+
+      this.posts.set(posts);
+      
+    })
+  }
+
+    getAllStore(): Observable<Post[]> {
+      return this.http.get<Post[]>(`${this.appConfig.apiUrl}/posts`);
+    }
+
+    createStore(post: Omit<Post, 'id'>): Observable<Post> {
+      return this.http.post<Post>(`${this.appConfig.apiUrl}/posts`, post);
+    }
+
+      update(post: Post): Observable<Post> {
+        return this.http.put<Post>(`${this.appConfig.apiUrl}/${post.id}`, post);
+      }
+
+      delete(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.appConfig.apiUrl}/${id}`);
+      }
 }

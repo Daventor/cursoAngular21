@@ -3,3 +3,29 @@ p{
     color:green;
     font-size: 20px;
 }
+
+::view-transition-old(root) {
+  animation: slide-up-out 300ms ease both;
+}
+
+::view-transition-new(root) {
+  animation: slide-up-in 300ms ease both;
+}
+
+@keyframes slide-up-out {
+  to {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up-in {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+main {
+  view-transition-name: content;
+} 

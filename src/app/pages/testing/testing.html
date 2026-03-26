@@ -1,0 +1,17 @@
+<p>testing works!</p>
+
+<h1>{{ title() }}</h1>
+
+<button (click)="increment()">{{ value() }}</button>
+
+<input type="text" [(ngModel)]="name">
+
+<div class="title-case">{{ name }}</div>
+
+<hr>
+
+@if(auth.isLoggedIn()){
+    <button class="login" (click)="auth.logout()">Logout</button>
+}@else {
+    <span>Login</span>
+}

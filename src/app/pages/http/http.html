@@ -5,3 +5,20 @@
         <li>{{ post.title }}</li>
     }
 </ul>
+
+<!-- @if (obsPost$ | async; as myPosts){
+    @for(post of myPosts; track post.id){
+        <li>{{ post.title }}</li>
+    }
+} -->
+
+@if(postListResource.isLoading()){
+    <li>Cargando ....</li>
+}@else if (postListResource.error()){
+    <li>Error al cargar</li>
+}@else{
+    @let postRes = postListResource.value();
+    @for(post of postRes; track post.id){
+        <li>[RES] {{ post.title }}</li>
+    }
+}

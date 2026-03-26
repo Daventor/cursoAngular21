@@ -5,6 +5,8 @@ import { Signals } from './pages/signals/signals';
 import { Form } from './pages/form/form';
 import { Services } from './pages/services/services';
 import { Http } from './pages/http/http';
+import { routingRoutes } from './pages/routing/routing-routes';
+import { Testing } from './pages/testing/testing';
 
 export const routes: Routes = [
     {path:'', component: Components},
@@ -12,5 +14,11 @@ export const routes: Routes = [
     {path:'signals', component: Signals},
     {path:'forms', component: Form},
     {path:'services', component: Services},
-    {path:'http', component: Http}
+    {path:'http', component: Http},
+
+    {path:'routing', loadChildren: () => routingRoutes},
+
+    {path:'testing', component: Testing},
+
+    {path: '**', component: Components} // Not found
 ];

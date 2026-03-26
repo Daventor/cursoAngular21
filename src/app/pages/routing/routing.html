@@ -1,0 +1,41 @@
+<p>routing works!</p>
+
+<!-- <router-outlet 
+(activate)="" 
+(deactivate)=""
+(attach)=""
+(detach)=""
+/> -->
+<router-outlet [routerOutletData]="{layout: 'sidebar'}"></router-outlet>
+
+<p>
+    <a href="/routing/info">Info (nativo)</a> | 
+    <a href="/routing/review">Review (nativo)</a>
+</p>
+
+<p>
+    <a routerLink="/routing/info" routerLinkActive="active-link">Info (angular)</a> |
+    <a routerLink="/routing/review" routerLinkActive="active-link">Review (angular)</a> |
+
+    <a [routerLink]="['detail', 23]">Detalle 23</a> |
+    <a [routerLink]="['detail', 23, 'action', 'save']">Detalle 23</a> |
+
+    <a routerLink="/routing" routerLinkActive="active-link anotherClass" [routerLinkActiveOptions]="{exact: true}">Routing</a>
+<!--
+{
+  paths: 'exact',
+  fragment: 'ignored',
+  matrixParams: 'ignored',
+  queryParams: 'exact',
+}    
+-->
+
+</p>
+
+<p>
+    <button (click)="navigateTo()">Cambiar página por programación</button>
+</p>
+
+<p>
+    <a routerLink="/routing/confirm">Ir a confirm</a>
+</p>
