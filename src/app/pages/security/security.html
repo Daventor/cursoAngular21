@@ -1,0 +1,15 @@
+<p>security works!</p>
+
+<div [innerHTML]="bio"></div>
+
+<!-- <img src=x onerror="alert('XSS')"> -->
+<!-- <div [innerHTML]="safeBio"></div> -->
+
+<a [href]="userProvideUrl">Ir</a>
+
+<div>
+    <!-- <iframe [src]="videoUrl"></iframe> -->
+    <iframe [src]="safeVideoUrl"></iframe>
+</div>
+
+<div [style.background]="safeUserColor" >Inyección CSS</div>

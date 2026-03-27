@@ -7,6 +7,7 @@ import { Services } from './pages/services/services';
 import { Http } from './pages/http/http';
 import { routingRoutes } from './pages/routing/routing-routes';
 import { Testing } from './pages/testing/testing';
+import { Security } from './pages/security/security';
 
 export const routes: Routes = [
     {path:'', component: Components},
@@ -19,6 +20,7 @@ export const routes: Routes = [
     {path:'routing', loadChildren: () => routingRoutes},
 
     {path:'testing', component: Testing},
+    {path:'security', component: Security},
 
     {path: '**', component: Components} // Not found
 ];

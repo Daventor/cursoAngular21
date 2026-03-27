@@ -15,3 +15,7 @@
 }@else {
     <span>Login</span>
 }
+<p class="quote">
+    <i>{{ quote | async }}</i>
+</p>
+<button class="nextQuoteBtn" type="button" (click)="getQuote()">Siguiente cita</button>
